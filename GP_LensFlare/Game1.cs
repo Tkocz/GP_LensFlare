@@ -2,11 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace LensFlareCPDP
+namespace GP_LensFlare
 {
     /// <summary>
-    /// Sample showing how to implement a lensflare effect, using occlusion
-    /// queries to hide the flares when the sun is hidden behind the landscape.
+    /// This is the main type for your game.
     /// </summary>
     public class LensFlareGame : Game
     {
@@ -34,6 +33,9 @@ namespace LensFlareCPDP
         public LensFlareGame()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            graphics.PreferredBackBufferWidth = 1600;
+            graphics.PreferredBackBufferHeight = 900;
             Content.RootDirectory = "Content";
 
             Up = Vector3.Up;

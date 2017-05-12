@@ -6,41 +6,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LensFlareCPDP
+namespace GP_LensFlare
 {
-    /// <summary>
-    /// Reusable component for drawing a lensflare effect over the top of a 3D scene.
-    /// </summary>
     public class LensFlareComponent : DrawableGameComponent
     {
         #region Constants
-
-
         // How big is the circular glow effect?
-        const float glowSize = 400;
+        const float glowSize = 800;
 
         // How big a rectangle should we examine when issuing our occlusion queries?
         // Increasing this makes the flares fade out more gradually when the sun goes
         // behind scenery, while smaller query areas cause sudden on/off transitions.
         const float querySize = 100;
-
-
         #endregion
 
         #region Fields
-
-
         // These are set by the main game to tell us the position of the camera and sun.
         public Matrix View;
         public Matrix Projection;
 
         public Vector3 LightDirection = Vector3.Normalize(new Vector3(-1, -0.1f, 0.3f));
 
-
         // Computed by UpdateOcclusion, which projects LightDirection into screenspace.
         Vector2 lightPosition;
         bool lightBehindCamera;
-
 
         // Graphics objects.
         Texture2D glowSprite;
@@ -48,19 +37,16 @@ namespace LensFlareCPDP
         BasicEffect basicEffect;
         VertexPositionColor[] queryVertices;
 
-
         // Custom blend state so the occlusion query polygons do not show up on screen.
         static readonly BlendState ColorWriteDisable = new BlendState
         {
             ColorWriteChannels = ColorWriteChannels.None
         };
 
-
         // An occlusion query is used to detect when the sun is hidden behind scenery.
         OcclusionQuery occlusionQuery;
         bool occlusionQueryActive;
         float occlusionAlpha;
-
 
         // The lensflare effect is made up from several individual flare graphics,
         // which move across the screen depending on the position of the sun. This
@@ -74,14 +60,12 @@ namespace LensFlareCPDP
                 Color = color;
                 TextureName = textureName;
             }
-
             public float Position;
             public float Scale;
             public Color Color;
             public string TextureName;
             public Texture2D Texture;
         }
-
 
         // Array describes the position, size, color, and texture for each individual
         // flare graphic. The position value lies on a line between the sun and the
@@ -111,8 +95,6 @@ namespace LensFlareCPDP
         #endregion
 
         #region Initialization
-
-
         /// <summary>
         /// Constructs a new lensflare component.
         /// </summary>
@@ -120,7 +102,6 @@ namespace LensFlareCPDP
             : base(game)
         {
         }
-
 
         /// <summary>
         /// Loads the content used by the lensflare component.
@@ -156,11 +137,9 @@ namespace LensFlareCPDP
             occlusionQuery = new OcclusionQuery(GraphicsDevice);
         }
 
-
         #endregion
 
         #region Draw
-
 
         /// <summary>
         /// Draws the lensflare component.
@@ -176,7 +155,6 @@ namespace LensFlareCPDP
 
             RestoreRenderStates();
         }
-
 
         /// <summary>
         /// Mesures how much of the sun is visible, by drawing a small rectangle,
@@ -304,6 +282,7 @@ namespace LensFlareCPDP
         {
             if (lightBehindCamera || occlusionAlpha <= 0)
                 return;
+
 
             Viewport viewport = GraphicsDevice.Viewport;
 

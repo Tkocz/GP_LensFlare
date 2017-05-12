@@ -5,7 +5,7 @@
 /intermediateDir:obj/$(Platform)
 /platform:DesktopGL
 /config:
-/profile:Reach
+/profile:HiDef
 /compress:False
 
 #-------------------------------- References --------------------------------#
@@ -89,6 +89,6 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=DxtCompressed
+/processorParam:TextureFormat=Compressed
 /build:terrain.fbx
 

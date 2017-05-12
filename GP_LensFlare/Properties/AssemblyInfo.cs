@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LensFlareCPDP")]
-[assembly: AssemblyProduct("LensFlareCPDP")]
+[assembly: AssemblyTitle("GP_LensFlare")]
+[assembly: AssemblyProduct("GP_LensFlare")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c2752fbe-4d3e-4979-a41b-4fa69e39062c")]
+[assembly: Guid("04dd355d-68ea-4301-bab3-738936046e0b")]
 
 // Version information for an assembly consists of the following four values:
 //

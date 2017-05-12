@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LensFlareCPDP
+namespace GP_LensFlare
 {
     /// <summary>
     /// The main class.
