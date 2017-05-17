@@ -107,7 +107,7 @@ namespace GP_LensFlare
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Navy);
 
             float aspectRatio = graphics.GraphicsDevice.Viewport.AspectRatio;
             Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, 0.1f, 500f);
@@ -213,6 +213,14 @@ namespace GP_LensFlare
             if (currentKeyboardState.IsKeyDown(Keys.E))
             {
                 YPR.Z += -angle;
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.LeftControl))
+            {
+                lensFlare.changeFlares(true);
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.RightControl))
+            {
+                lensFlare.changeFlares(false);
             }
         }
 

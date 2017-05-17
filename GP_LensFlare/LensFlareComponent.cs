@@ -51,7 +51,7 @@ namespace GP_LensFlare
         // The lensflare effect is made up from several individual flare graphics,
         // which move across the screen depending on the position of the sun. This
         // helper class keeps track of the position, size, and color for each flare.
-        class Flare
+        public class Flare
         {
             public Flare(float position, float scale, Color color, string textureName)
             {
@@ -75,21 +75,49 @@ namespace GP_LensFlare
         // one will move the flares outward toward the edge of the screen. Changing
         // the number of flares, or tweaking their positions and colors, can produce
         // a wide range of different lensflare effects without altering any other code.
-        Flare[] flares =
+        public Flare[] flares =
         {
             new Flare(-0.5f, 0.7f, new Color( 50,  25,  50), "flare1"),
             new Flare( 0.3f, 0.4f, new Color(100, 255, 200), "flare1"),
             new Flare( 1.2f, 1.0f, new Color(100,  50,  50), "flare1"),
             new Flare( 1.5f, 1.5f, new Color( 50, 100,  50), "flare1"),
-
+                                                                    
             new Flare(-0.3f, 0.7f, new Color(200,  50,  50), "flare2"),
             new Flare( 0.6f, 0.9f, new Color( 50, 100,  50), "flare2"),
             new Flare( 0.7f, 0.4f, new Color( 50, 200, 200), "flare2"),
-
+                                                                    
             new Flare(-0.7f, 0.7f, new Color( 50, 100,  25), "flare3"),
             new Flare( 0.0f, 0.6f, new Color( 25,  25,  25), "flare3"),
             new Flare( 2.0f, 1.4f, new Color( 25,  50, 100), "flare3"),
         };
+        public Flare[] flares2 =
+            {
+            new Flare(-0.5f, 0.7f, Color.Red,       "flare1_2"),
+            new Flare( 0.3f, 0.4f, Color.Tomato,    "flare1_2"),
+            new Flare( 1.2f, 1.0f, Color.BurlyWood, "flare1_2"),
+            new Flare( 1.5f, 1.5f, Color.Pink,      "flare1_2"),
+
+            new Flare(-0.3f, 0.7f, Color.Red,       "flare2_2"),
+            new Flare( 0.6f, 0.9f, Color.Tomato,    "flare2_2"),
+            new Flare( 0.7f, 0.4f, Color.BurlyWood, "flare2_2"),
+
+            new Flare(-0.7f, 0.7f, Color.Red,       "flare3_2"),
+            new Flare( 0.0f, 0.6f, Color.Tomato,    "flare3_2"),
+            new Flare( 2.0f, 1.4f, Color.BurlyWood, "flare3_2"),
+
+            new Flare(-0.5f, 0.7f, Color.Red,       "flare4_2"),
+            new Flare( 0.5f, 0.6f, Color.Tomato,    "flare4_2"),
+            new Flare( 2.5f, 1.4f, Color.BurlyWood, "flare4_2"),
+        };
+        public Flare[] current;
+
+        public void changeFlares(bool choise)
+        {
+            if(choise)
+                current = flares;
+            else
+                current = flares2;
+        }
 
 
         #endregion
@@ -117,6 +145,10 @@ namespace GP_LensFlare
             foreach (Flare flare in flares)
             {
                 flare.Texture = Game.Content.Load<Texture2D>(flare.TextureName);
+            }
+            foreach (Flare flare2 in flares2)
+            {
+                flare2.Texture = Game.Content.Load<Texture2D>(flare2.TextureName);
             }
 
             // Effect for drawing occlusion query polygons.
@@ -294,8 +326,9 @@ namespace GP_LensFlare
 
             // Draw the flare sprites using additive blending.
             spriteBatch.Begin(0, BlendState.Additive);
-
-            foreach (Flare flare in flares)
+            if (current == null)
+                current = flares;
+            foreach (Flare flare in current)
             {
                 // Compute the position of this flare sprite.
                 Vector2 flarePosition = lightPosition + flareVector * flare.Position;
