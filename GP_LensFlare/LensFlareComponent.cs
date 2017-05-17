@@ -12,12 +12,12 @@ namespace GP_LensFlare
     {
         #region Constants
         // How big is the circular glow effect?
-        const float glowSize = 800;
+        const float glowSize = 400;
 
         // How big a rectangle should we examine when issuing our occlusion queries?
         // Increasing this makes the flares fade out more gradually when the sun goes
         // behind scenery, while smaller query areas cause sudden on/off transitions.
-        const float querySize = 100;
+        const float querySize = 1000;
         #endregion
 
         #region Fields
